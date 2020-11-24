@@ -1,0 +1,21 @@
+## set up ssh user name and path to python3 ##
+[all:vars]
+ansible_user='luxiter'
+#ansible_ssh_private_key_file=./regsickey.pem
+ansible_become=yes
+ansible_become_method=sudo
+ansible_python_interpreter='/usr/bin/env python3'
+ 
+##########################
+## our aws server names
+## you can use ip address here too
+###########################
+[servers]
+kubem1
+kubem2
+kubem3
+[worker]
+kubew1
+kubew2
+kubew3
+kubew4

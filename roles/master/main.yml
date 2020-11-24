@@ -1,0 +1,5 @@
+- name: Open Port for Kubernetes API server
+  ansible.posix.firewalld:
+    port: 6443/tcp
+    permanent: yes
+    state: enabled

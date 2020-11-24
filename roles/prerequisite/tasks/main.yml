@@ -1,0 +1,29 @@
+---
+- name: Add the br_netfilter module at runtime
+  community.general.modprobe:
+    name: br_netfilter
+    state: present
+- name: Install pigz
+  package:
+    name: pigz
+    state: present
+- name: Enable bridge on ip6tables on sysctl
+  ansible.posix.sysctl:
+    name: net.bridge.bridge-nf-call-ip6tables
+    value: '1'
+    sysctl_file: /etc/sysctl.d/98-k8s.conf
+    reload: no
+- name: Enable bridge on iptables on sysctl
+  ansible.posix.sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: '1'
+    sysctl_file: /etc/sysctl.d/98-k8s.conf
+    reload: no
+- name: Remove swapfile from /etc/fstab if present
+  mount:
+    name: "{{ item }}"
+    fstype: swap
+    state: absent
+  with_items:
+    - swap
+
