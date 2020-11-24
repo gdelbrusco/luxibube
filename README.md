@@ -1,4 +1,4 @@
-# luxibube
+# luxikube
 
 For use this playbook you must install this ansible package
 ansible-galaxy collection install ansible.posix
