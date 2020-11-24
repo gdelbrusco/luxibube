@@ -1,0 +1,10 @@
+- name: Open Port for Self, Control plane
+  ansible.posix.firewalld:
+    port: 10250/tcp
+    permanent: yes
+    state: enabled
+- name: Open Port for NodePort Services
+  ansible.posix.firewalld:
+    port: {{ nodeport }}
+    permanent: yes
+    state: enabled

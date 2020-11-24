@@ -1,0 +1,17 @@
+---
+- name: Open Port for Kubernetes API server
+  ansible.posix.firewalld:
+    port: 6443/tcp
+    permanent: yes
+    state: enabled
+- name: Open Port for kube-apiserver, etcd
+  ansible.posix.firewalld:
+    port: 2379-2380/tcp
+    permanent: yes
+    state: enabled
+- name: Open Port Self, Control plane, kube-scheduler, kube-controller-manager
+  ansible.posix.firewalld:
+    port: 10250-10252/tcp
+    permanent: yes
+    state: enabled
+
